@@ -1,14 +1,12 @@
 {
   "name": "buildertools-config",
-  "version": "0.0.1-beta10",
+  "version": "0.0.1-beta12",
   "description": "",
   "types": "./src/index.ts",
   "files": [
     "src"
   ],
-  "scripts": {
-    
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC"

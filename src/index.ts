@@ -1,8 +1,8 @@
-interface ExternalsObjectElement {
+export interface ExternalsObjectElement {
   [key: string]: boolean | string;
 }
 
-interface DevServer {
+export interface DevServer {
   port?: number; // 运行端口号
   // 代理到后端服务接口
   proxy?: {
@@ -10,16 +10,16 @@ interface DevServer {
   };
 }
 
-interface Output {
+export interface Output {
   publicPath?: string; // 资源URL前缀
 }
 
-interface Module {
+export interface Module {
   noParse?: RegExp | RegExp[] | ((content: string) => boolean); // 忽略对部分没有模块化的文件的解析
 }
 
-export class BuildertoolsConfig {
-  mode?: "development" | "production" = "production";
+export interface BuildertoolsConfig {
+  mode?: "development" | "production";
   /*
     1、entry: "./src/index.js",
     2、entry: [
@@ -36,11 +36,9 @@ export class BuildertoolsConfig {
       ]
     }
   */
-  entry?: string | string[] | { [name: string]: string | string[] } = { index: "./src/index" };
+  entry?: string | string[] | { [name: string]: string | string[] };
 
-  output?: Output = {
-    publicPath: "" // 资源URL前缀
-  };
+  output?: Output;
 
   module?: Module; // 忽略对部分没有模块化的文件的解析
   /*
@@ -58,8 +56,5 @@ export class BuildertoolsConfig {
   externals?: string | string[] | ExternalsObjectElement | ExternalsObjectElement[]; // 不打包到Chunk的库
 
   // 服务器
-  devServer?: DevServer = {
-    port: 8080, // 运行端口号
-    proxy: {} //代理到后端服务接口
-  };
+  devServer?: DevServer;
 }

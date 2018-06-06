@@ -2,6 +2,22 @@ interface ExternalsObjectElement {
   [key: string]: boolean | string;
 }
 
+interface DevServer {
+  port?: number; // 运行端口号
+  // 代理到后端服务接口
+  proxy?: {
+    [key: string]: string;
+  };
+}
+
+interface Output {
+  publicPath?: string; // 资源URL前缀
+}
+
+interface Module {
+  noParse?: RegExp | RegExp[] | ((content: string) => boolean); // 忽略对部分没有模块化的文件的解析
+}
+
 export class BuildertoolsConfig {
   mode?: "development" | "production" = "production";
   /*
@@ -21,9 +37,12 @@ export class BuildertoolsConfig {
     }
   */
   entry?: string | string[] | { [name: string]: string | string[] } = { index: "./src/index" };
-  port?: number = 8080; // 运行端口号
-  publicPath?: string = ""; // 资源URL前缀
-  noParse?: RegExp | RegExp[] | ((content: string) => boolean); // 忽略对部分没有模块化的文件的解析
+
+  output?: Output = {
+    publicPath: "" // 资源URL前缀
+  };
+
+  module?: Module; // 忽略对部分没有模块化的文件的解析
   /*
     1、"jQuery" // jQuery不打包到Chunk，可以通过 require("jQuery") 导入
     2、["jQuery", "lodash"]
@@ -38,8 +57,9 @@ export class BuildertoolsConfig {
   */
   externals?: string | string[] | ExternalsObjectElement | ExternalsObjectElement[]; // 不打包到Chunk的库
 
-  // 代理到后端服务接口
-  proxy?: {
-    [key: string]: string;
+  // 服务器
+  devServer?: DevServer = {
+    port: 8080, // 运行端口号
+    proxy: {} //代理到后端服务接口
   };
 }

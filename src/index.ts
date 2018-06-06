@@ -17,5 +17,6 @@ export class BuildertoolsConfig {
     }
   */
   entry?: string | string[] | { [name: string]: string | string[] } = { index: "./src/index" };
-  port?: number = 8080;
+  port?: number = 8080; // 运行端口号
+  noParse?: RegExp | RegExp[] | ((content: string) => boolean); // 忽略对部分没有模块化的文件的解析
 }

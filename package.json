@@ -1,6 +1,6 @@
 {
   "name": "buildertools-config",
-  "version": "0.0.1-beta7",
+  "version": "0.0.1-beta8",
   "description": "",
   "types": "./src/index.ts",
   "files": [
